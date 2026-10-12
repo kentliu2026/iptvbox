@@ -8,6 +8,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # 关键修复：让 ANDROID_SDK_ROOT 与 ANDROID_HOME 指向同一目录，
+      # 否则 Gradle 会因“检测到两个不同 SDK 路径”而拒绝构建
+      ANDROID_HOME: /home/runner/android-sdk
+      ANDROID_SDK_ROOT: /home/runner/android-sdk
     steps:
       - name: Checkout
         uses: actions/checkout@v4
